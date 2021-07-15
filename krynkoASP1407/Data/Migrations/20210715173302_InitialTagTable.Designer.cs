@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using krynkoASP1407.Data;
 
 namespace krynkoASP1407.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210715173302_InitialTagTable")]
+    partial class InitialTagTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -274,6 +276,9 @@ namespace krynkoASP1407.Data.Migrations
                     b.Property<DateTime>("Release")
                         .HasColumnType("datetime2");
 
+                    b.Property<string>("Tags")
+                        .HasColumnType("nvarchar(max)");
+
                     b.HasKey("Id");
 
                     b.HasIndex("PublisherId");
@@ -293,25 +298,6 @@ namespace krynkoASP1407.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Publishers");
-                });
-
-            modelBuilder.Entity("krynkoASP1407.Data.Tag", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid?>("GameId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("GameId");
-
-                    b.ToTable("Tag");
                 });
 
             modelBuilder.Entity("DeveloperGame", b =>
@@ -392,18 +378,6 @@ namespace krynkoASP1407.Data.Migrations
                     b.HasOne("krynkoASP1407.Data.Publisher", null)
                         .WithMany("Games")
                         .HasForeignKey("PublisherId");
-                });
-
-            modelBuilder.Entity("krynkoASP1407.Data.Tag", b =>
-                {
-                    b.HasOne("krynkoASP1407.Data.Game", null)
-                        .WithMany("Tags")
-                        .HasForeignKey("GameId");
-                });
-
-            modelBuilder.Entity("krynkoASP1407.Data.Game", b =>
-                {
-                    b.Navigation("Tags");
                 });
 
             modelBuilder.Entity("krynkoASP1407.Data.Publisher", b =>

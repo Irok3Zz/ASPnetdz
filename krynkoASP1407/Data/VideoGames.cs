@@ -13,7 +13,7 @@ namespace krynkoASP1407.Data
         public HashSet<Developer> Developers { get; set; } // Разработчик(их может быть несколько)
         public Guid Publisher { get; set; } // Издатель
         public DateTime Release { get; set; } // Дата релиза
-        public HashSet<string> Tags { get; set; } // Теги, жанры(напр. у Assassin's Creed 2 теги: эпоха возрождения, паркур, экшен, от 3 лица и т.д.)
+        public HashSet<Tag> Tags { get; set; } // Теги, жанры(напр. у Assassin's Creed 2 теги: эпоха возрождения, паркур, экшен, от 3 лица и т.д.)
     }
 
     public class Developer // Разработчик
@@ -29,5 +29,10 @@ namespace krynkoASP1407.Data
         public string Name { get; set; } 
         public HashSet<Developer> Developers { get; set; } // Издательство владеет несколькими разработчиками
         public HashSet<Game> Games { get; set; } // Игры от издателя 
+    }
+    public class Tag
+    {
+        public Guid Id { get; set; }
+        public string Name { get; set; }
     }
 }
