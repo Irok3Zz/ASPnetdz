@@ -23,7 +23,7 @@ namespace krynkoASP1407.Controllers
             return View();
         }
 
-        public IActionResult Privacy()
+        public IActionResult Create()
         {
             return View();
         }
